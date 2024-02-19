@@ -6,8 +6,8 @@ const postDivision = document.getElementById('post-area');
 
 userNameInput.addEventListener(
   'keydown',
-  (event) =>{
-    if(event.code=== 'Enter'){
+  (event) => {
+    if (event.code === 'Enter') {
       assessmentButton.dispatchEvent(new Event('click'))
     }
   }
@@ -20,16 +20,31 @@ assessmentButton.addEventListener(
       //名前が空のときは処理を終了する。
       return;
     }
+    //診断結果表示エリアの作成
     resultDivision.innerText = '';
     console.log(userName);
-    const header = document.createElement('h3');
-    header.innerText = '診断結果';
-    resultDivision.appendChild(header);
+
+    //headerDivisionの作成
+    const headerDvision = document.createElement('div');
+    headerDvision.setAttribute('class', 'card-header text-bg-primary');
+    headerDvision.innerText = '診断結果';
+
+    //bodyDivisionの作成
+    const bodyDivision = document.createElement('div');
+    bodyDivision.setAttribute('class', 'card-body');
 
     const paragraph = document.createElement('p');
+    paragraph.setAttribute('class', 'card-text');
     const result = assessment(userName);
     paragraph.innerText = result;
-    resultDivision.appendChild(paragraph);
+    bodyDivision.appendChild(paragraph);
+
+    //resultDivisionにBootstrapのスタイルを適用する
+    resultDivision.setAttribute('class', 'card');
+
+    //headerDivisionとbodyDivisionをresultDivisionに差し込む
+    resultDivision.appendChild(headerDvision);
+    resultDivision.appendChild(bodyDivision);
 
     //ポストエリアの作成
     postDivision.innerText = '';
@@ -47,7 +62,7 @@ assessmentButton.addEventListener(
     postDivision.appendChild(anchor);
 
     const script = document.createElement('script');
-    script.setAttribute('src',"https://platform.twitter.com/widgets.js");
+    script.setAttribute('src', "https://platform.twitter.com/widgets.js");
     postDivision.appendChild(script);
   }
 );
