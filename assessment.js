@@ -21,7 +21,7 @@ assessmentButton.addEventListener(
       return;
     }
     //診断結果表示エリアの作成
-    resultDivision.innerText = '';
+    resultDivision.innerText = "";
     console.log(userName);
 
     //headerDivisionの作成
